@@ -5,6 +5,9 @@ ElGamal encryption
 
 class ElGamal:
     def __init__(self, prime, alfa, d, type="ElGamal"): # NOQA (due to type input and self.type shadow name)
+        """
+        
+        """
         self.privat_key = d
         self.type = type
         self.public_key = {"p": prime,
@@ -12,6 +15,9 @@ class ElGamal:
                            "beta": self.modular_exponentation(alfa, d, prime)}
 
     def enconder(self, m, a):
+        """
+        
+        """
         c1 = self.modular_exponentation(self.public_key["alfa"], a, self.public_key["p"])
         if self.type == "ElGamal":
             c2 = (self.modular_exponentation(self.public_key["beta"], a, self.public_key["p"]) * m) % \
@@ -25,6 +31,9 @@ class ElGamal:
         return c1, c2
 
     def decoder(self, c1, c2):
+        """
+        
+        """
         if self.type == "ElGamal":
             temp = self.modular_exponentation(c1, -self.privat_key, self.public_key["p"])
             result = (c2 * temp) % self.public_key["p"]
@@ -38,10 +47,16 @@ class ElGamal:
         return result
 
     def public_key(self):
+        """
+        
+        """
         return self.public_key
 
     @staticmethod
     def modular_exponentation(x, e, m):
+        """
+        
+        """
         return pow(x, e, m)
 
 
